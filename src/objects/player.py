@@ -1,7 +1,8 @@
-from random import random
+from random import random, choice
 
 from src._collections.chip_collection import ChipCollection
 from src.common.config import logger
+from src.common.constants import PLAYER_PHRASES
 from src.objects.chip import Chip
 from src.models.game_entity import GameEntity
 
@@ -21,27 +22,20 @@ class Player(GameEntity):
         raise TypeError
 
     def __sub__(self, other):
-        if isinstance(other, int):
-            self.balance -= other
-            return self
-        if isinstance(other, Chip):
-            self.balance -= other.count
-            return self
+        if isinstance(other, int) or isinstance(other, Chip):
+            return Player(self.name, self.balance - other)
         raise TypeError
+
+    def __call__(self, *args, **kwargs):
+        logger.info(f"{self.full_name}: {choice(PLAYER_PHRASES)}")
 
     def spin(self, bet: int | Chip) -> None:
         if isinstance(bet, int):
             bet = Chip(bet)
         logger.info(f"Игрок {self.name} делает ставку {bet} фишек")
-        if random() < 0.4:
+        if random() <= 0.4:
             self.balance += bet
             logger.info(f"Игрок {self.name} смог выйграть в борьбе за {bet} фишек в нечестном казино")
         else:
-            # try:
-            # TODO перенести это в класс Casino
             self.balance -= bet
-            # except NotEnoughChipsException:
-            #     logger.info(
-            #         f"Игрок {self.name} депнул всё в казино и слил. Не получилось не фартануло, пацан к успеху шёл")
-            #     return
             logger.info(f"Игрок {self.name} с треском слил {bet} фишек")

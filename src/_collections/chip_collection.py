@@ -1,4 +1,4 @@
-from src.common.exceptions import NotEnoughChipsException
+from src.common.exceptions import NotEnoughElementsException
 from src.models.list_entity import ListEntity
 from src.objects.chip import Chip
 
@@ -21,12 +21,27 @@ class ChipCollection(ListEntity[Chip]):
         if isinstance(other, ChipCollection) or isinstance(other, Chip):
             other = other.count
         if isinstance(other, int):
-            while not self.is_empty() and self.back().count <= other:
+            while not self.is_empty() and self.back <= other:
                 other -= self.pop().count
             if self.is_empty():
-                raise NotEnoughChipsException(self.__sub__)
-            self.back().count -= other
+                raise NotEnoughElementsException(self.__sub__)
+            self.back -= other
             return ChipCollection(self.data)
+        raise TypeError
+
+    def __eq__(self, other):
+        if isinstance(other, ChipCollection):
+            return self.count == other.count
+        raise TypeError
+
+    def __lt__(self, other):
+        if isinstance(other, ChipCollection):
+            return self.count < other.count
+        raise TypeError
+
+    def __le__(self, other):
+        if isinstance(other, ChipCollection):
+            return self.count <= other.count
         raise TypeError
 
     @property
@@ -41,3 +56,6 @@ class ChipCollection(ListEntity[Chip]):
         self.clear()
         self.append(one_chip)
         return self
+
+
+print(ChipCollection([Chip(0), Chip(2), Chip(4)]) == ChipCollection([Chip(0), Chip(2), Chip(4)]))

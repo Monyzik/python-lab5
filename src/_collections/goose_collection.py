@@ -1,4 +1,3 @@
-from src.common.config import logger
 from src.models.list_entity import ListEntity
 from src.objects.goose import Goose, WarGoose
 
@@ -8,11 +7,11 @@ class GooseCollection(ListEntity[Goose]):
 
     def __add__(self, other) -> "GooseCollection":
         if isinstance(other, Goose):
-            return GooseCollection(self.data + other)
+            self.append(other)
+            return GooseCollection(self.data)
         raise TypeError
 
     def disco(self) -> None:
-        logger.info("Вечеринка гусей началась")
         for goose in self:
             goose()
             goose.honk()
@@ -23,11 +22,10 @@ class GooseCollection(ListEntity[Goose]):
                 goose.damage += 1
             goose.honk_volume += 1
 
-
-gooses = GooseCollection([Goose("Петя"), Goose("Самир", honk_volume=100)])
-gooses.disco()
-print(gooses)
-gooses.evolution()
-del gooses[:2]
-print(gooses)
-
+# gooses = GooseCollection([Goose("Петя"), Goose("Самир", honk_volume=100)])
+# gooses.disco()
+# print(gooses)
+# # gooses.append(Player('abacaba'))
+# gooses.evolution()
+# del gooses[:2]
+# print(gooses)

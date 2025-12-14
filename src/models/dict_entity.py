@@ -1,4 +1,4 @@
-import copy
+from copy import deepcopy
 from typing import Generic, TypeVar, Iterator
 
 from src.common.config import logger
@@ -12,7 +12,7 @@ class DictEntity(Collection, Generic[K, V]):
     def __init__(self, data: dict[K, V] = None) -> None:
         if data is None:
             data = {}
-        self.data = copy.deepcopy(data)
+        self.data = data
 
     def __len__(self) -> int:
         return len(self.data)
@@ -26,14 +26,21 @@ class DictEntity(Collection, Generic[K, V]):
         return self.data[key]
 
     def __setitem__(self, key: K, value: V) -> None:
-        logger.debug(f"Изменение {key}: {self.data[key]} -> {value}")
-        self.data[key] = value
+        if key not in self.data:
+            logger.debug(f"Добавлен {key}: {value}")
+            self.data[key] = value
+        else:
+            logger.debug(f"Изменение {key}: {self.data[key]} -> {value}")
+            self.data[key] = value
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.data})"
 
-    def __delitem__(self, key):
+    def __contains__(self, item: K) -> bool:
+        return item in self.data
+
+    def __delitem__(self, key: K) -> None:
         if key not in self.data:
             raise KeyError(f"Ключа {key} нет в {self.data}")
-        logger.debug(f"Удален элемент {self.data[key]}")
+        logger.debug(f"Удален элемент {key}: {self.data[key]}")
         del self.data[key]

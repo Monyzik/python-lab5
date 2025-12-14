@@ -1,6 +1,8 @@
 import logging.config
 
-from src.common.constants import PROJECT_DIR
+from pathlib import Path
+
+PROJECT_DIR = Path(__file__).parent.parent.parent
 
 LOGGING_CONFIG = {
     "version": 1,

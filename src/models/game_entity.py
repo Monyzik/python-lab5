@@ -1,4 +1,3 @@
-import copy
 from abc import ABC, abstractmethod
 
 from src._collections.chip_collection import ChipCollection
@@ -9,10 +8,7 @@ class GameEntity(ABC):
         if balance is None:
             balance = ChipCollection()
         self.name = name
-        self.balance = copy.deepcopy(balance)
-
-    def __hash__(self):
-        return hash(self.name)
+        self.balance = balance
 
     def __eq__(self, other):
         if isinstance(other, GameEntity):
@@ -21,17 +17,21 @@ class GameEntity(ABC):
 
     def __lt__(self, other):
         if isinstance(other, GameEntity):
-            if self.balance.count == other.balance.count:
+            if self.balance == other.balance:
                 return self.name < other.name
-            return self.balance.count < other.balance.count
+            return self.balance < other.balance
         raise TypeError
 
-    def __ge__(self, other):
+    def __le__(self, other):
         if isinstance(other, GameEntity):
-            if self.balance.count == other.balance.count:
-                return self.name > other.name
-            return self.balance.count > other.balance.count
+            if self.balance == other.balance:
+                return self.name <= other.name
+            return self.balance <= other.balance
         raise TypeError
+
+    @property
+    def full_name(self):
+        return self.__class__.__name__ + ' ' + self.name
 
     @abstractmethod
     def __repr__(self) -> str:

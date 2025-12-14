@@ -4,7 +4,6 @@ from src._collections.chip_collection import ChipCollection
 from src._collections.player_collection import PlayerCollection
 from src.common.config import logger
 from src.models.game_entity import GameEntity
-from src.objects.chip import Chip
 from src.objects.player import Player
 
 
@@ -32,10 +31,12 @@ class WarGoose(Goose):
         self.damage = damage
 
     def attack(self, player: Player):
+        logger.info(f"Гусь {self.name} атаковал {player.name}")
         player.balance -= self.damage
         self.balance += self.damage
 
     def steal_chip(self, player: Player, index: int):
+        logger.info(f"Гусь {self.name} атаковал {player.name}")
         chip = player.balance.pop(index)
         self.balance += chip
 
@@ -49,12 +50,7 @@ class HonkGoose(Goose):
         logger.info(f"Я есть очень громкий гусь {self.name}")
 
     def superpower(self, players: PlayerCollection):
+        logger.info(f"Гусь {self.name} использовал суперспособность, каждый игрок потерял {self.honk_volume} фишек")
         self.balance += self.honk_volume * len(players)
         players -= self.honk_volume
-
-
-a = Goose(name="", balance=ChipCollection([Chip(10), Chip(20)]))
-b = Player(name="", balance=ChipCollection([Chip(20), Chip(20)]))
-print(a == b)
-print(a > b)
-print(a <= b)
+        return self

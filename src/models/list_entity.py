@@ -1,4 +1,3 @@
-import copy
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, Iterator
 
@@ -17,7 +16,7 @@ class ListEntity(Collection, ABC, Generic[T]):
         for item in data:
             if not isinstance(item, self.expected_type):
                 raise TypeError
-        self.data = copy.deepcopy(data)
+        self.data = data
 
     @abstractmethod
     def __add__(self, other):
@@ -78,7 +77,15 @@ class ListEntity(Collection, ABC, Generic[T]):
     def clear(self) -> None:
         self.data.clear()
 
+    @property
     def back(self) -> T:
         if self.is_empty():
             raise EmptyCollectionException(self.back, self.__class__)
         return self.data[-1]
+
+    @back.setter
+    def back(self, value: T) -> None:
+        self.data[-1] = value
+
+    def get_typed_list(self, needed: type) -> "ListEntity":
+        return self.__class__([item for item in self if isinstance(item, needed)])
