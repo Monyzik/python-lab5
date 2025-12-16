@@ -3,7 +3,7 @@ import pytest
 from src.simulation import run_simulation
 
 
-# @pytest.mark.repeat(100)
+# @pytest.mark.repeat(5)
 # def test_simulation_seed(caplog):
 #     run_simulation()
 #     out = caplog.text
