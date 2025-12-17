@@ -1,6 +1,6 @@
 import pytest
 
-from src._collections.casino_balance import CasinoBalances
+from src.containers.casino_balance import CasinoBalances
 
 
 def test_casino_balances(caplog):

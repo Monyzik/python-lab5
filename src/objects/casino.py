@@ -1,8 +1,8 @@
 from random import sample, randint, choice, choices
 
-from src._collections.casino_balance import CasinoBalances
-from src._collections.goose_collection import GooseCollection
-from src._collections.player_collection import PlayerCollection
+from src.containers.casino_balance import CasinoBalances
+from src.containers.goose_collection import GooseCollection
+from src.containers.player_collection import PlayerCollection
 from src.common.config import logger
 from src.common.exceptions import NotEnoughElementsException
 from src.objects.goose import Goose, HonkGoose, WarGoose

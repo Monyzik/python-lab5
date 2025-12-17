@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from random import sample, randint, choice
 
-from src._collections.casino_balance import CasinoBalances
+from src.containers.casino_balance import CasinoBalances
 from src.common.config import logger
 from src.common.exceptions import NotEnoughElementsException, NegativeArgumentException
 from src.models.list_entity import ListEntity

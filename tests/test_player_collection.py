@@ -1,8 +1,8 @@
 import pytest
 from pytest_mock import MockerFixture
 
-from src._collections.chip_collection import ChipCollection
-from src._collections.player_collection import PlayerCollection
+from src.containers.chip_collection import ChipCollection
+from src.containers.player_collection import PlayerCollection
 from src.objects.casino import Casino
 from src.objects.chip import Chip
 from src.objects.player import Player

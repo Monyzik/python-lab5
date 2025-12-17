@@ -1,7 +1,7 @@
 import pytest
 
-from src._collections.chip_collection import ChipCollection
-from src._collections.goose_collection import GooseCollection
+from src.containers.chip_collection import ChipCollection
+from src.containers.goose_collection import GooseCollection
 from src.objects.chip import Chip
 from src.objects.goose import Goose, WarGoose
 

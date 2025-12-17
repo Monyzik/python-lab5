@@ -15,7 +15,7 @@ python -m src.main
 ### Архитектура:
 ```
 .
-├── _collections
+├── collections
 │   ├── casino_balance.py
 │   ├── chip_collection.py
 │   ├── goose_collection.py

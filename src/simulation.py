@@ -2,7 +2,7 @@ import random
 import uuid
 from math import isqrt
 
-from src._collections.chip_collection import ChipCollection
+from src.containers.chip_collection import ChipCollection
 from src.common.config import logger
 from src.common.exceptions import NegativeArgumentException
 from src.objects.chip import Chip

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src._collections.chip_collection import ChipCollection
+from src.containers.chip_collection import ChipCollection
 
 
 class GameEntity(ABC):

@@ -1,8 +1,8 @@
 from typing import override, Callable
 
-from src._collections.casino_balance import CasinoBalances
-from src._collections.chip_collection import ChipCollection
-from src._collections.player_collection import PlayerCollection
+from src.containers.casino_balance import CasinoBalances
+from src.containers.chip_collection import ChipCollection
+from src.containers.player_collection import PlayerCollection
 from src.common.config import logger
 from src.common.exceptions import NotEnoughElementsException
 from src.models.game_entity import GameEntity

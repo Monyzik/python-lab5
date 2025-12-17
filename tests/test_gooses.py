@@ -1,6 +1,6 @@
-from src._collections.chip_collection import ChipCollection
-from src._collections.goose_collection import GooseCollection
-from src._collections.player_collection import PlayerCollection
+from src.containers.chip_collection import ChipCollection
+from src.containers.goose_collection import GooseCollection
+from src.containers.player_collection import PlayerCollection
 from src.objects.chip import Chip
 from src.objects.goose import Goose, HonkGoose, WarGoose
 from src.objects.player import Player

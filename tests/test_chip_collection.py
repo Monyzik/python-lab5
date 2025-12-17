@@ -1,6 +1,6 @@
 import pytest
 
-from src._collections.chip_collection import ChipCollection
+from src.containers.chip_collection import ChipCollection
 from src.common.exceptions import EmptyCollectionException
 from src.objects.chip import Chip
 

@@ -1,8 +1,8 @@
 from random import random, choice
 from typing import Callable
 
-from src._collections.casino_balance import CasinoBalances
-from src._collections.chip_collection import ChipCollection
+from src.containers.casino_balance import CasinoBalances
+from src.containers.chip_collection import ChipCollection
 from src.common.config import logger
 from src.common.constants import PLAYER_PHRASES
 from src.common.exceptions import NotEnoughElementsException
