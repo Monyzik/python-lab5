@@ -34,11 +34,16 @@ if __name__ == "__main__":
     # print(Goose("Ваня") == Goose("Ваня"))
 
     # Проверка ошибки №3
-    # from src.containers.goose_collection import GooseCollection
-    # from src.containers.player_collection import PlayerCollection
+    from src.containers.goose_collection import GooseCollection
+    from src.containers.player_collection import PlayerCollection
+
     # from src.objects.player import Player
     # gooses = GooseCollection()
     # players = PlayerCollection()
-    # players.append(Player("Федя"))
     # print(gooses)
+    # print(players)
+    # players.append(Player("Федя"))
+    # print(players)
+    # print(gooses)
+
     main()

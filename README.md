@@ -16,6 +16,8 @@
 
 Как воспроизвести:
 Запустить симуляцию с steps=20 и seed=4 (на шаге 7 проявляется проблема).
+![img](docs/mistake-1/mistake-1-error.png)
+*Игрок bb5d73 пропущен*
 
 Отладка:
 Установим breakpoint на строчку с ```unregister_func(player)```, в окладчике видно,
@@ -52,6 +54,9 @@ for player in to_delete:
 ```
 
 Проверка:
+![img](docs/mistake-1/mistake-1-fixed.png)
+*Игрок bb5d73 присутствует*
+
 После изменения поведение симуляции соответствует ожидаемому.
 
 Доказательства:
@@ -67,7 +72,7 @@ for player in to_delete:
 
 Симптом:
 Неправильно происходит сравнение на равенство двух объектов GameEntity
-![img](docs/mistake-2/mistake-2-problem.png)
+![img](docs/mistake-2/mistake-2-error.png)
 *Примечание: для тестирования, данный код добавлен в main.py в виде комментария*
 
 Как воспроизвести:
@@ -93,6 +98,7 @@ return self.name == other.name and self.balance == other.balance
 ```
 
 Проверка:
+![img](docs/mistake-2/mistake-2-fixed.png)
 После изменения поведение соответствует ожидаемому.
 
 Доказательства:
@@ -110,9 +116,11 @@ return self.name == other.name and self.balance == other.balance
 
 Симптом:
 При добавлении элемента в одну коллекцию он добавляется сразу во все возможные коллекции
+![img](docs/mistake-3/mistake-3-error.png)
 
 Как воспроизвести:
 Попытаться добавить элемент в одну коллекцию, до этого создав ещё одну коллекцию.
+
 *Примечание: для тестирования, данный код добавлен в main.py в виде комментария*
 
 Отладка:
@@ -146,6 +154,7 @@ def __init__(self, data: list[T] = None) -> None:
 ```
 
 Проверка:
+![img](docs/mistake-3/mistake-3-fixed.png)
 После изменения поведение соответствует ожидаемому.
 
 Доказательства:
@@ -164,6 +173,7 @@ def __init__(self, data: list[T] = None) -> None:
 Симптом:
 При симуляции не удаляются игроки, которые обанкротились,
 вместо этого они начинают дублироваться создавая большой лог
+![img](docs/mistake-4/mistake-4-error.png)
 
 Как воспроизвести:
 Запустить симуляцию с steps=100 и seed=1 (на шаге 71 проявляется проблема).
@@ -199,6 +209,7 @@ honk_goose.superpower(self.players, self.casino_balances, self.unregister_player
 ```
 
 Проверка:
+![img](docs/mistake-4/mistake-4-fixed.png)
 После изменения поведение соответствует ожидаемому.
 
 Доказательства:
@@ -216,6 +227,7 @@ honk_goose.superpower(self.players, self.casino_balances, self.unregister_player
 
 Симптом:
 При симуляции эволюции возникает ошибка, что у HonkGoose нет атрибута damage
+![img](docs/mistake-5/mistake-5-error.png)
 
 Как воспроизвести:
 Запустить симуляцию с steps=100 и seed=1 (на шагах 23, 59, 95 проявляется проблема).
@@ -246,6 +258,7 @@ if isinstance(goose, WarGoose):
 ```
 
 Проверка:
+![img](docs/mistake-5/mistake-5-fixed.png)
 После изменения поведение соответствует ожидаемому.
 
 Доказательства:

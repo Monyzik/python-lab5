@@ -29,8 +29,8 @@ class GooseCollection(ListEntity[Goose]):
         """
         logger.info("Эволюция гусей началась, все гуси стали сильнее и громче")
         for goose in self:
-            # if isinstance(goose, WarGoose):
+            if isinstance(goose, WarGoose):
             # Ошибка 5. Неправильный код:
-            if isinstance(goose, HonkGoose):
+            # if isinstance(goose, HonkGoose):
                 goose.damage += power
             goose.honk_volume += power
