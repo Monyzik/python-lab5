@@ -98,6 +98,8 @@ class Casino:
             raise NotEnoughElementsException(self.goose_superpower)
         honk_goose = choice(honk_gooses)
         honk_goose.superpower(self.players, self.casino_balances, self.unregister_player)
+        # Ошибка 4. Неправильный код:
+        # honk_goose.superpower(self.players, self.casino_balances, self.register_player)
 
     def goose_attack(self) -> None:
         """

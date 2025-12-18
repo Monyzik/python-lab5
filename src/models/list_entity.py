@@ -19,6 +19,13 @@ class ListEntity(Collection, ABC, Generic[T]):
                 raise TypeError
         self.data = data
 
+    # Ошибка 3. Неправильный код:
+    # def __init__(self, data: list[T] = []) -> None:
+    #     for item in data:
+    #         if not isinstance(item, self.expected_type):
+    #             raise TypeError
+    #     self.data = data
+
     @abstractmethod
     def __add__(self, other):
         pass

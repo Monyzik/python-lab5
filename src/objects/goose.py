@@ -83,6 +83,7 @@ class HonkGoose(Goose):
         """
         logger.info(f"Гусь {self.name} использовал суперспособность, "
                     f"каждый игрок потерял {self.honk_volume} фишек")
+
         to_delete = []
         for player in players:
             try:
@@ -92,5 +93,14 @@ class HonkGoose(Goose):
                 to_delete.append(player)
         for player in to_delete:
             unregister_func(player)
+
+        # Ошибка 1. Неправильный код:
+        # for player in players:
+        #     try:
+        #         player.balance -= self.honk_volume
+        #         casino_balances[player.full_name] = player.balance.count
+        #     except NotEnoughElementsException:
+        #         unregister_func(player)
+
         self.balance += self.honk_volume * len(players)
         casino_balances[self.full_name] = self.balance.count

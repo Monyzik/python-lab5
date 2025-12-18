@@ -13,6 +13,8 @@ class GameEntity(ABC):
     def __eq__(self, other):
         if isinstance(other, GameEntity):
             return self.name == other.name and self.balance == other.balance
+            # Ошибка 2. Неправильный код:
+            # return self.name is other.name and self.balance is other.balance
         raise TypeError
 
     def __lt__(self, other):
